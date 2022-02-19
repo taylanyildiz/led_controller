@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/widgets/widgets.dart';
 import '/controllers/controllers.dart';
@@ -22,6 +22,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                 children: [
                   _buildCircleColorPicker,
                   _buildColorPicker,
+                  _buildSpeedSlider,
+                  _buildSettingSlider,
                 ],
               ),
             ),
@@ -79,6 +81,30 @@ class HomeScreen extends GetView<HomeScreenController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget get _buildSpeedSlider {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+      child: SliderLineHoriz(
+        prefixIcon: const Icon(
+          FontAwesomeIcons.forward,
+          color: Colors.white,
+          size: 20.0,
+        ),
+        onChanged: (value) {},
+      ),
+    );
+  }
+
+  Widget get _buildSettingSlider {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: SliderLineHoriz(
+        prefixIcon: const Icon(Icons.settings, color: Colors.white),
+        onChanged: (value) {},
       ),
     );
   }

@@ -8,9 +8,19 @@ class AppPages {
 
   static final pages = <GetPage>[
     GetPage(
+      name: AppRoutes.splash,
+      page: () => const SplashScreen(),
+      binding: SplashBinding(),
+    ),
+    GetPage(
       name: AppRoutes.home,
       page: () => const HomeScreen(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.connection,
+      page: () => const ConnectionScreen(),
+      binding: ConnectionBinding(),
     )
   ];
 }
