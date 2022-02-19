@@ -11,11 +11,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^9.2.0
 
   get: ^4.6.1
-
-  # circle color picker
-  flutter_circle_color_picker: ^0.3.0
 
 dev_dependencies:
   flutter_test:

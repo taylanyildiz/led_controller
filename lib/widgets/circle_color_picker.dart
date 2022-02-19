@@ -8,6 +8,7 @@ class CircleColorPicker extends StatefulWidget {
     Size? size,
     double? strokeWidth,
     Color? initialColor,
+    this.child,
   })  : size = size ?? const Size(200.0, 200.0),
         strokeWidth = strokeWidth ?? 30.0,
         initialColor = initialColor ?? Colors.orange,
@@ -27,6 +28,9 @@ class CircleColorPicker extends StatefulWidget {
 
   /// On change [Color] returns.
   final Function(Color color) onChange;
+
+  /// Center of circle picker color child [Widget].
+  final Widget? child;
 
   @override
   State<CircleColorPicker> createState() => _CircleColorPickerState();
@@ -49,14 +53,12 @@ class _CircleColorPickerState extends State<CircleColorPicker>
     )..addListener(_hueListener);
     _scaleController = AnimationController(
       vsync: this,
-      value: 1,
-      lowerBound: 0.9,
-      upperBound: 1,
+      value: .8,
+      lowerBound: 0.7,
+      upperBound: 0.8,
       duration: const Duration(milliseconds: 50),
     );
-    _offset = _CircleTween(
-      (minSize - strokeWidth) / 2,
-    ).animate(_hueController);
+    _offset = _CircleTween((minSize - strokeWidth) / 2).animate(_hueController);
     super.initState();
   }
 
@@ -99,7 +101,6 @@ class _CircleColorPickerState extends State<CircleColorPicker>
       position.dx - circleWidth / 2,
     );
     _hueController.value = radians % (2 * pi);
-    setState(() {});
   }
 
   @override
@@ -163,7 +164,6 @@ class _CircleColorPickerState extends State<CircleColorPicker>
               decoration: BoxDecoration(
                 color: _onChangeColor,
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.white),
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
@@ -179,12 +179,14 @@ class _CircleColorPickerState extends State<CircleColorPicker>
   }
 
   Widget get _buildCenterChild {
-    return Container(
-      width: circleWidth - strokeWidth * 2,
-      height: circleHeight - strokeWidth * 2,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.transparent,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(circleHeight - strokeWidth * 2),
+      child: Container(
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.transparent,
+        ),
+        child: widget.child,
       ),
     );
   }
