@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:led_controller/widgets/widgets.dart';
+import '/widgets/widgets.dart';
 import '/controllers/controllers.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
@@ -12,18 +12,18 @@ class HomeScreen extends GetView<HomeScreenController> {
     return GetBuilder<HomeScreenController>(
       builder: (_) {
         return Scaffold(
+          backgroundColor: Colors.black,
           appBar: _buildAppBar,
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleColorPicker(
-                  strokeWidth: 50.0,
-                  size: const Size(250.0, 250.0),
-                  onChange: controller.changeColor,
-                  child: _buildOnOffButton,
-                ),
-              ],
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildCircleColorPicker,
+                  _buildColorPicker,
+                ],
+              ),
             ),
           ),
         );
@@ -34,6 +34,23 @@ class HomeScreen extends GetView<HomeScreenController> {
   AppBar get _buildAppBar {
     return AppBar(
       backgroundColor: controller.color,
+    );
+  }
+
+  Widget get _buildCircleColorPicker {
+    return CircleColorPicker(
+      strokeWidth: 50.0,
+      size: const Size(200.0, 200.0),
+      onChange: controller.changeColor,
+      child: _buildOnOffButton,
+      initialColor: controller.color,
+    );
+  }
+
+  Widget get _buildColorPicker {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
+      child: ColorPickerBox(onSelect: controller.changeColor),
     );
   }
 
@@ -48,7 +65,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           children: [
             Icon(
               FontAwesomeIcons.powerOff,
-              size: 60.0,
+              size: 40.0,
               color: controller.color,
             ),
             const SizedBox(height: 10.0),
@@ -56,7 +73,7 @@ class HomeScreen extends GetView<HomeScreenController> {
               controller.ledOn ? "On" : "Off",
               style: TextStyle(
                 color: controller.color,
-                fontSize: 20.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),

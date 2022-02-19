@@ -62,6 +62,12 @@ class _CircleColorPickerState extends State<CircleColorPicker>
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant CircleColorPicker oldWidget) {
+    if (oldWidget.initialColor != widget.initialColor) {}
+    super.didUpdateWidget(oldWidget);
+  }
+
   void _hueListener() {
     final color = _onChangeColor;
     widget.onChange.call(color);
