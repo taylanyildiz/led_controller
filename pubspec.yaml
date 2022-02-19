@@ -14,6 +14,9 @@ dependencies:
 
   get: ^4.6.1
 
+  # circle color picker
+  flutter_circle_color_picker: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
