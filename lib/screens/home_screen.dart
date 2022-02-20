@@ -43,9 +43,10 @@ class HomeScreen extends GetView<HomeScreenController> {
     return CircleColorPicker(
       strokeWidth: 50.0,
       size: const Size(200.0, 200.0),
-      onChange: controller.onChangeColor,
+      onChange: controller.onChangeColorCirlcePicker,
       child: _buildOnOffButton,
       initialColor: controller.color,
+      changedColor: controller.changedColor,
     );
   }
 

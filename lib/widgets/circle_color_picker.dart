@@ -8,10 +8,12 @@ class CircleColorPicker extends StatefulWidget {
     Size? size,
     double? strokeWidth,
     Color? initialColor,
+    Color? changedColor,
     this.child,
   })  : size = size ?? const Size(200.0, 200.0),
         strokeWidth = strokeWidth ?? 30.0,
         initialColor = initialColor ?? Colors.orange,
+        changedColor = changedColor ?? Colors.orange,
         super(key: key);
 
   /// Circle picker size
@@ -31,6 +33,9 @@ class CircleColorPicker extends StatefulWidget {
 
   /// Center of circle picker color child [Widget].
   final Widget? child;
+
+  /// [Color] of change
+  final Color changedColor;
 
   @override
   State<CircleColorPicker> createState() => _CircleColorPickerState();
@@ -64,7 +69,9 @@ class _CircleColorPickerState extends State<CircleColorPicker>
 
   @override
   void didUpdateWidget(covariant CircleColorPicker oldWidget) {
-    if (oldWidget.initialColor != widget.initialColor) {}
+    if (oldWidget.changedColor != widget.changedColor) {
+      _hueController.value = changedHue * pi / 180;
+    }
     super.didUpdateWidget(oldWidget);
   }
 
@@ -81,7 +88,11 @@ class _CircleColorPickerState extends State<CircleColorPicker>
 
   Color get initialColor => widget.initialColor;
 
+  Color get changedColor => widget.initialColor;
+
   double get initialHue => HSLColor.fromColor(initialColor).hue;
+
+  double get changedHue => HSLColor.fromColor(changedColor).hue;
 
   Color get _onChangeColor {
     final hue = _hueController.value * (180 / pi);

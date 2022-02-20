@@ -14,7 +14,6 @@ class UDPConnectionService {
   static Future<void> initializeSocket(String host, int port) async {
     _address = InternetAddress(host);
     _port = Port(port);
-    await _bindUDP();
   }
 
   static Future<void> _bindUDP() async {
@@ -41,5 +40,5 @@ class UDPConnectionService {
     _socket?.close();
   }
 
-  static connect() => _bindUDP();
+  static Future<void> connect() async => await _bindUDP();
 }

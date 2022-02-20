@@ -4,7 +4,8 @@ import 'package:led_controller/services/services.dart';
 
 class HomeScreenController extends GetxController {
   Color color = Colors.orange;
-  bool ledOn = true;
+  Color changedColor = Colors.orange;
+  bool ledOn = false;
 
   @override
   void onInit() async {
@@ -12,9 +13,17 @@ class HomeScreenController extends GetxController {
     super.onInit();
   }
 
-  void onChangeColor(color) async {
+  void onChangeColorCirlcePicker(color) async {
     this.color = color;
     await UDPConnectionService.sendUdpData(color.toString());
+    update();
+  }
+
+  void onChangeColor(Color color) async {
+    this.color = color;
+    changedColor = color;
+    await UDPConnectionService.sendUdpData(color.toString());
+
     update();
   }
 
