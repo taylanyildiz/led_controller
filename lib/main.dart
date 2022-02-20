@@ -1,17 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:led_controller/services/esp_connection_service.dart';
 import '/bindings/bindings.dart';
 import '/routes/app_pages.dart';
 import '/routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  String address = "192.168.1.102";
-  int port = 4023;
-  await ESPConnectionService.bindUpd(address, port);
   runApp(const MyApp());
 }
 
@@ -27,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.blue),
       getPages: AppPages.pages,
       initialBinding: HomeBinding(),
-      initialRoute: AppRoutes.connection,
+      initialRoute: AppRoutes.splash,
     );
   }
 }
