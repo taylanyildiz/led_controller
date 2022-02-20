@@ -43,7 +43,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     return CircleColorPicker(
       strokeWidth: 50.0,
       size: const Size(200.0, 200.0),
-      onChange: controller.changeColor,
+      onChange: controller.onChangeColor,
       child: _buildOnOffButton,
       initialColor: controller.color,
     );
@@ -52,7 +52,7 @@ class HomeScreen extends GetView<HomeScreenController> {
   Widget get _buildColorPicker {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
-      child: ColorPickerBox(onSelect: controller.changeColor),
+      child: ColorPickerBox(onSelect: controller.onChangeColor),
     );
   }
 

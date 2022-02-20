@@ -6,9 +6,14 @@ class ConnectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar,
       body: SingleChildScrollView(
         child: Column(),
       ),
     );
+  }
+
+  AppBar get _buildAppBar {
+    return AppBar();
   }
 }

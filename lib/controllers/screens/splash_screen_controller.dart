@@ -15,7 +15,7 @@ class SplashScreenController extends GetxController {
 
   void _lottieListen() {
     if (lottieController.isDone) {
-      Get.toNamed(AppRoutes.connection);
+      Get.offAndToNamed(AppRoutes.home);
     }
   }
 }
