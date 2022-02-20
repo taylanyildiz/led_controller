@@ -1,5 +1,5 @@
 name: led_controller
-description: A new Flutter project.
+description: Esp8266 UDP Connection RGB Led controller Application.
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -15,6 +15,10 @@ dependencies:
 
   get: ^4.6.1
   get_storage: ^2.0.3
+
+  udp: ^5.0.1
+  # esp connection service package
+  # esptouch_flutter: ^1.0.0
 
 dev_dependencies:
   flutter_test:
